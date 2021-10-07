@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
@@ -18,7 +19,12 @@ module.exports = {
         ]
     },
     plugins: [
-        new HtmlWebpackPlugin({ template: './src/index.html' })
+        new HtmlWebpackPlugin({ template: './src/index.html' }),
+        new webpack.DefinePlugin({
+            config: JSON.stringify({
+                apiUrl: 'http://localhost:4000'
+            })
+        })
     ],
     devServer: {
         historyApiFallback: true
